@@ -5,7 +5,7 @@ import markdownItDeflist from "markdown-it-deflist";
 import markdownItImplicitFigures from "markdown-it-implicit-figures";
 import markdownItTableOfContents from "markdown-it-table-of-contents";
 import markdownItRuby from "markdown-it-ruby";
-import markdownItImsize from "markdown-it-imsize";
+// import markdownItImsize from "markdown-it-imsize";
 
 import markdownItSpan from "./markdown-it-span";
 import markdownItRemovepre from "./markdown-it-removepre";
@@ -94,7 +94,7 @@ markdownParserWechat
   .use(markdownItDeflist) // 定义列表
   .use(markdownItLiReplacer) // li 标签中加入 p 标签
   .use(markdownItImageFlow) // 横屏移动插件
-  .use(markdownItImsize);
+  // .use(markdownItImsize);
 
 // 普通解析器，代码高亮用highlight
 export const markdownParser = new MarkdownIt({
@@ -131,7 +131,7 @@ markdownParser
   .use(markdownItDeflist) // 定义列表
   .use(markdownItLiReplacer) // li 标签中加入 p 标签
   .use(markdownItImageFlow) // 横屏移动插件
-  .use(markdownItImsize);
+  // .use(markdownItImsize);
 
 export const replaceStyle = (id, css) => {
   const style = document.getElementById(id);
