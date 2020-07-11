@@ -25,6 +25,7 @@ import {
   IMAGE_HOSTING_TYPE,
   MJX_DATA_FORMULA,
   MJX_DATA_FORMULA_TYPE,
+  LOCAL_STORAGE_YTARTICLE,
 } from "./utils/constant";
 import {markdownParser, markdownParserWechat, updateMathjax} from "./utils/helper";
 import pluginCenter from "./utils/pluginCenter";
@@ -141,8 +142,16 @@ class App extends Component {
 
   setEditorContent = () => {
     const {defaultText} = this.props;
-    if (defaultText) {
-      this.props.content.setContent(defaultText);
+    const ytArticle = window.localStorage.getItem(LOCAL_STORAGE_YTARTICLE);
+    let ytContent = null;
+    if (ytArticle) {
+      const article = JSON.parse(ytArticle);
+      ytContent = article.content;
+      this.props.content.setContent(ytContent + "");
+      this.props.content.setSubject(article.subject + "");
+      this.props.content.setAuthors(article.authors + "");
+      this.props.content.setCompany(article.company + "");
+      this.props.content.setCreatedTime(article.createdTime + "");
     }
   };
 
@@ -156,25 +165,27 @@ class App extends Component {
   };
 
   getInstance = (instance) => {
-    instance.editor.on("inputRead", function(cm, event) {
-      if (event.origin === "paste") {
-        var text = event.text[0]; // pasted string
-        var new_text = ""; // any operations here
-        cm.refresh();
-        const {length} = cm.getSelections();
-        // my first idea was
-        // note: for multiline strings may need more complex calculations
-        cm.replaceRange(new_text, event.from, {line: event.from.line, ch: event.from.ch + text.length});
-        // first solution did'nt work (before i guess to call refresh) so i tried that way, works too
-        if (length === 1) {
-          cm.execCommand("undo");
-        }
-        // cm.setCursor(event.from);
-        cm.replaceSelection(new_text);
-      }
-    });
     if (instance) {
+      instance.editor.on("inputRead", function(cm, event) {
+        if (event.origin === "paste") {
+          var text = event.text[0]; // pasted string
+          var new_text = ""; // any operations here
+          cm.refresh();
+          const {length} = cm.getSelections();
+          // my first idea was
+          // note: for multiline strings may need more complex calculations
+          cm.replaceRange(new_text, event.from, {line: event.from.line, ch: event.from.ch + text.length});
+          // first solution did'nt work (before i guess to call refresh) so i tried that way, works too
+          if (length === 1) {
+            cm.execCommand("undo");
+          }
+          // cm.setCursor(event.from);
+          cm.replaceSelection(new_text);
+        }
+      });
       this.props.content.setMarkdownEditor(instance.editor);
+    } else {
+      console.error("instance undefined");
     }
   };
 
@@ -361,17 +372,35 @@ class App extends Component {
                     this.previewContainer = node;
                   }}
                 >
-                  <section
-                    id={LAYOUT_ID}
-                    data-tool="mdnice编辑器"
-                    data-website="https://www.mdnice.com"
-                    dangerouslySetInnerHTML={{
-                      __html: parseHtml,
-                    }}
-                    ref={(node) => {
-                      this.previewWrap = node;
-                    }}
-                  />
+                  <section id={LAYOUT_ID} data-tool="mdnice编辑器" data-website="https://www.mdnice.com">
+                    <div className="article-subject">{this.props.content.subject}</div>
+                    <div className="article-info">
+                      <div>
+                        作者:
+                        {this.props.content.authors}
+                      </div>
+                      <div>
+                        单位:
+                        {this.props.content.company}
+                      </div>
+                      <div>
+                        时间:
+                        {this.props.content.createdTime && this.props.content.createdTime.length >= 10
+                          ? this.props.content.createdTime.substring(0, 10)
+                          : ""}
+                      </div>
+                    </div>
+                    <div
+                      className="article-content"
+                      dangerouslySetInnerHTML={{
+                        __html: parseHtml,
+                      }}
+                      ref={(node) => {
+                        this.previewWrap = node;
+                      }}
+                    />
+                    <div className="article-reads">阅读: 0</div>
+                  </section>
                 </div>
               </div>
 

@@ -17,6 +17,7 @@ import Close from "./Close";
 import FontCase from "./FontCase";
 import Replace from "./Replace";
 import ReplaceAll from "./ReplaceAll";
+import Yitian from "./Yitian";
 
 export default (props) => {
   switch (props.name) {
@@ -54,6 +55,8 @@ export default (props) => {
       return <Replace {...props} />;
     case "replaceAll":
       return <ReplaceAll {...props} />;
+    case "yitian":
+      return <Yitian {...props} />;
     default:
       return <svg />;
   }

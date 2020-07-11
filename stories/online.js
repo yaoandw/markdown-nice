@@ -1,5 +1,6 @@
 import React from "react";
 import MarkdownNice from "../lib/Lib";
+import {YITIAN_API} from "../src/utils/constant";
 
 // 编辑器默认的内容
 const defaultText = `编辑器默认的内容`;
@@ -8,8 +9,8 @@ const defaultTitle = "Markdown Nice";
 
 // 自定义图床参数
 const useImageHosting = {
-  url: "https://imgkr.com/api/files/upload",
-  name: "图壳"
+  url: YITIAN_API,
+  name: "颐天3"
 };
 
 function App() {

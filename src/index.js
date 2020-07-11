@@ -3,12 +3,13 @@ import ReactDOM from "react-dom";
 
 import Lib from "./Lib";
 import * as serviceWorker from "./serviceWorker";
+import {YITIAN_API} from "./utils/constant";
 
 ReactDOM.render(
   <Lib
     useImageHosting={{
-      url: "https://imgkr.com/api/files/upload",
-      name: "图壳",
+      url: YITIAN_API,
+      name: "颐天2",
       isSmmsOpen: true,
       isQiniuyunOpen: true,
       isAliyunOpen: true,

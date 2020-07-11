@@ -34,6 +34,10 @@ export const IMAGE_HOSTING_NAMES = {
   aliyun: "阿里云",
   qiniuyun: "七牛云",
 };
+export const LOCAL_STORAGE_YTARTICLE = "ytArticle";
+// export const YITIAN_API = "http://192.168.2.147:5555/cms/api/cms/article/upfile";
+export const YITIAN_API = "https://server.cms.jojo.la/cms/api/cms/article/upfile";
+// export const YITIAN_API = "http://jojo.la:8088/cms/api/cms/article/upfile";
 
 export const RIGHT_SYMBOL = "✔️";
 export const EXPORT_FILENAME_SUFFIX = ".md";

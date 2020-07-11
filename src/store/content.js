@@ -6,6 +6,14 @@ import TEMPLATE from "../template/index";
 class Content {
   @observable content;
 
+  @observable subject;
+
+  @observable authors;
+
+  @observable company;
+
+  @observable createdTime;
+
   @observable style;
 
   @observable themeList;
@@ -27,6 +35,30 @@ class Content {
   setContent = (content) => {
     this.content = content;
     window.localStorage.setItem(CONTENT, content);
+  };
+
+  @action
+  setSubject = (subject) => {
+    this.subject = subject;
+    window.localStorage.setItem("subject", subject);
+  };
+
+  @action
+  setAuthors = (authors) => {
+    this.authors = authors;
+    window.localStorage.setItem("authors", authors);
+  };
+
+  @action
+  setCompany = (company) => {
+    this.company = company;
+    window.localStorage.setItem("company", company);
+  };
+
+  @action
+  setCreatedTime = (createdTime) => {
+    this.createdTime = createdTime;
+    window.localStorage.setItem("createdTime", createdTime);
   };
 
   @action
@@ -75,5 +107,9 @@ addStyleLabel(STYLE_LABELS);
 replaceStyle(BASIC_THEME_ID, TEMPLATE.basic);
 
 store.content = window.localStorage.getItem(CONTENT);
+store.subject = window.localStorage.getItem("subject");
+store.authors = window.localStorage.getItem("authors");
+store.company = window.localStorage.getItem("company");
+store.createdTime = window.localStorage.getItem("createdTime");
 
 export default store;

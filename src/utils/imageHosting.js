@@ -163,9 +163,11 @@ export const customImageUpload = async ({
   showUploadNoti();
   try {
     formData.append("file", file);
+    formData.append("name", file.name);
     const config = {
       headers: {
         "Content-Type": "multipart/form-data",
+        authorization: window.sessionStorage.getItem("accessToken"),
       },
     };
     const postURL = imageHosting.hostingUrl;
@@ -175,7 +177,7 @@ export const customImageUpload = async ({
     const filename = names.join(".");
     const image = {
       filename,
-      url: encodeURI(result.data.data), // 这里要和外接图床规定好数据逻辑，否则会接入失败
+      url: encodeURI(result.data.data.fullName), // 这里要和外接图床规定好数据逻辑，否则会接入失败
     };
 
     if (content) {

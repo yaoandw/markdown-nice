@@ -209,6 +209,7 @@ export default `/*默认样式，最佳实践*/
   display: block;
   margin: 0 auto;
   max-width: 100%;
+  padding: 0 35px; /* yitian */
 }
 
 /*图片*/
@@ -425,5 +426,38 @@ export default `/*默认样式，最佳实践*/
 
 #nice figure a {
   border: none;
+}
+
+
+#nice .article-subject {
+  font-family: PingFangSC-Medium;
+  font-size: 20px;
+  color: #000000;
+  letter-spacing: 1px;
+  border: solid #F02B53;
+  border-width: 0 0 0 6px;
+  padding-left: 13px;
+  margin-top: 40px;
+}
+/* yitian */
+#nice .article-info {
+  color: #999999;
+  font-size: 13px;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  margin: 0;
+  line-height: 26px;
+}
+
+#nice .article-content {
+  font-family: PingFangSC-Regular;
+  font-size: 15px;
+  color: #000000;
+  letter-spacing: 1.5px;
+  line-height: 27px;
+  padding: 0 10px;
+}
+#nice .article-reads {
+  padding-top: 10px;
 }
 `;
