@@ -1,5 +1,6 @@
-.App {
+.nice-app {
   height: 100vh;
+  width: 100%;
   display: flex;
   flex-direction: column;
   font-family: "PingFang SC", BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serifhtml, body;
@@ -117,11 +118,15 @@
   .nice-wx-box {
     overflow: visible;
     box-shadow: none;
+    width: 100%;
   }
   .nice-style-editing {
     display: none;
   }
   #nice-rich-text {
     padding: 0 !important;
+  }
+  .nice-footer-container {
+    display: none;
   }
 }

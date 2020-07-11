@@ -17,6 +17,7 @@ import Close from "./Close";
 import FontCase from "./FontCase";
 import Replace from "./Replace";
 import ReplaceAll from "./ReplaceAll";
+import User from "./User";
 import Yitian from "./Yitian";
 
 export default (props) => {
@@ -55,6 +56,8 @@ export default (props) => {
       return <Replace {...props} />;
     case "replaceAll":
       return <ReplaceAll {...props} />;
+    case "user":
+      return <User {...props} />;
     case "yitian":
       return <Yitian {...props} />;
     default:

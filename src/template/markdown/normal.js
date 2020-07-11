@@ -158,6 +158,15 @@ export default `/* 全局属性
 #nice table tr td {
 }
 
+/* 
+ * 某一列表格列宽控制
+ * n 可以修改为具体数字，不修改时表示所有列
+ * 最小列宽 min-width: 85px;
+ */
+#nice table tr th:nth-of-type(n),
+#nice table tr td:nth-of-type(n){
+}
+
 /* 脚注文字 */
 #nice .footnote-word {
 }
@@ -193,4 +202,39 @@ export default `/* 全局属性
 /* 行内公式
  */
 #nice .inline-equation svg { 
-}`;
+}
+/* yitian */
+
+#nice .article-subject {
+  font-family: PingFangSC-Medium;
+  font-size: 20px;
+  color: #000000;
+  letter-spacing: 1px;
+  border: solid #F02B53;
+  border-width: 0 0 0 6px;
+  padding-left: 13px;
+  margin-top: 40px;
+}
+
+#nice .article-info {
+  color: #999999;
+  font-size: 13px;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  margin: 0;
+  line-height: 26px;
+}
+
+#nice .article-content {
+  font-family: PingFangSC-Regular;
+  font-size: 15px;
+  color: #000000;
+  letter-spacing: 1.5px;
+  line-height: 27px;
+  padding: 0 10px;
+}
+#nice .article-reads {
+  padding-top: 10px;
+}
+
+`;

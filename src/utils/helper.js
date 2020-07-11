@@ -8,6 +8,7 @@ import markdownItRuby from "markdown-it-ruby";
 // import markdownItImsize from "markdown-it-imsize";
 
 import markdownItSpan from "./markdown-it-span";
+import markdownItTableContainer from "./markdown-it-table-container";
 import markdownItRemovepre from "./markdown-it-removepre";
 import markdownItLinkfoot from "./markdown-it-linkfoot";
 import markdownItImageFlow from "./markdown-it-imageflow";
@@ -81,6 +82,7 @@ export const markdownParserWechat = new MarkdownIt({
 
 markdownParserWechat
   .use(markdownItSpan) // 在标题标签中添加span
+  .use(markdownItTableContainer) // 在表格外部添加容器
   .use(markdownItRemovepre) // 移除代码段中的 pre code
   .use(markdownItMath) // 数学公式
   .use(markdownItLinkfoot) // 修改脚注
@@ -100,6 +102,9 @@ markdownParserWechat
 export const markdownParser = new MarkdownIt({
   html: true,
   highlight: (str, lang) => {
+    if (lang === undefined || lang === "") {
+      lang = "bash";
+    }
     // 加上custom则表示自定义样式，而非微信专属，避免被remove pre
     if (lang && highlightjs.getLanguage(lang)) {
       try {
@@ -119,6 +124,7 @@ export const markdownParser = new MarkdownIt({
 
 markdownParser
   .use(markdownItSpan) // 在标题标签中添加span
+  .use(markdownItTableContainer) // 在表格外部添加容器
   .use(markdownItMath) // 数学公式
   .use(markdownItLinkfoot) // 修改脚注
   .use(markdownItTableOfContents, {
@@ -304,4 +310,34 @@ export const wordCalc = (data) => {
     }
   }
   return count;
+};
+
+export const hasCookie = (key) => {
+  const cookie = document.cookie.split(";");
+  for (const item of cookie) {
+    const dict = item.trim().split("=");
+    if (dict[0] === key) {
+      return true;
+    }
+  }
+  return false;
+};
+
+export const getCookie = (key) => {
+  const cookie = document.cookie.split(";");
+  for (const item of cookie) {
+    const dict = item.trim().split("=");
+    if (dict[0] === key) {
+      return dict[1];
+    }
+  }
+  return null;
+};
+
+export const setCookie = (key, value) => {
+  document.cookie = `${key}=${value}; domain=.mdnice.com; path=/;`;
+};
+
+export const removeCookie = (key) => {
+  document.cookie = `${key}=; domain=.mdnice.com; path=/; expires=${new Date(0)};`;
 };

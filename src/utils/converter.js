@@ -73,11 +73,29 @@ export const solveJuejinMath = () => {
   }
 };
 
-export const juejinSuffix = () => {
+// 掘金单独处理代码块
+export const solveJuejinCode = (html) => {
+  // 掘金代码不换行问题
+  const brReg = /<pre([^>])*class="custom"([^>])*>(.*?)<\/pre>/g;
+  const brMatchList = html.match(brReg);
+  if (brMatchList) {
+    for (const item of brMatchList) {
+      const content = item
+        .replace(/display: -webkit-box;/g, "display: block;") // -webkit-box替换为block
+        .replace(/<br>/g, "\n<span/>") // <br>替换为\n<span/>
+        .replace(/&nbsp;/g, " "); // 空格转回，不转回遇到 "$ " 情况会出现问题
+
+      html = html.replace(item, content);
+    }
+  }
+  return html;
+};
+
+export const addJuejinSuffix = () => {
   const suffix = document.createElement("p");
   suffix.id = "nice-suffix-juejin-container";
   suffix.className = "nice-suffix-juejin-container";
-  suffix.innerHTML = `本文使用 <a href="https://mdnice.com">mdnice</a> 排版`;
+  suffix.innerHTML = `本文使用 <a href="https://mdnice.com/?from=juejin">mdnice</a> 排版`;
 
   const element = document.getElementById(LAYOUT_ID);
   element.appendChild(suffix);

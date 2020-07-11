@@ -12,7 +12,7 @@ export default `/*默认样式，最佳实践*/
   word-wrap: break-word;
   text-align: left;
   font-family: Optima-Regular, Optima, PingFangSC-light, PingFangTC-light, 'PingFang SC', Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-  margin-top: -10px; /*解决开头空隙过大问题*/
+  /* margin-top: -10px; 解决开头空隙过大问题*/
 }
 
 /*段落*/
@@ -34,6 +34,7 @@ export default `/*默认样式，最佳实践*/
 #nice h6 {
   margin-top: 30px;
   margin-bottom: 15px;
+  padding: 0px;
   font-weight: bold;
   color: black;
 }
@@ -227,6 +228,12 @@ export default `/*默认样式，最佳实践*/
   font-size: 14px;
 }
 
+
+/*表格容器 */
+#nice .table-container{
+  overflow-x: auto;
+}
+
 /*表格*/
 #nice table {
   display: table;
@@ -257,6 +264,12 @@ export default `/*默认样式，最佳实践*/
 #nice table tr th {
   font-weight: bold;
   background-color: #f0f0f0;
+}
+
+/* 表格最小列宽4个汉字 */
+#nice table tr th:nth-of-type(n),
+#nice table tr td:nth-of-type(n){
+  min-width:85px;
 }
 
 /* 微信代码块 */
@@ -429,6 +442,37 @@ export default `/*默认样式，最佳实践*/
 }
 
 
+#nice figure a img {
+  margin: 0px;
+}
+
+#nice figure {
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+/* 图片链接嵌套 */
+#nice figure a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* 图片链接嵌套，图片解释 */
+#nice figure a + figcaption {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin-top: -35px;
+  background: rgba(0,0,0,0.7);
+  color: white;
+  line-height: 35px;
+  z-index: 20;
+
+/* yitian */
 #nice .article-subject {
   font-family: PingFangSC-Medium;
   font-size: 20px;
@@ -439,7 +483,6 @@ export default `/*默认样式，最佳实践*/
   padding-left: 13px;
   margin-top: 40px;
 }
-/* yitian */
 #nice .article-info {
   color: #999999;
   font-size: 13px;

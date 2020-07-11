@@ -10,9 +10,9 @@ ReactDOM.render(
     useImageHosting={{
       url: YITIAN_API,
       name: "颐天2",
-      isSmmsOpen: true,
-      isQiniuyunOpen: true,
-      isAliyunOpen: true,
+      isSmmsOpen: false,
+      isQiniuyunOpen: false,
+      isAliyunOpen: false,
     }}
     defaultTitle="Markdown Nice"
   />,
